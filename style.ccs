@@ -1,0 +1,100 @@
+/* --- Reseteo Básico y Variables Globales --- */
+:root {
+    --primary-color: #121212; /* Negro Spotify */
+    --secondary-color: #1E1E1E;
+    --accent-color: #FFC700; /* Un dorado/amarillo vibrante */
+    --text-color: #FFFFFF;
+    --subtle-text-color: #B3B3B3;
+    --font-main: 'Roboto', sans-serif;
+    --font-display: 'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+}
+
+/* --- Header y Logo --- */
+.main-header {
+    padding: 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.5rem;
+    color: var(--accent-color);
+}
+
+/* --- Sección Hero --- */
+.hero-section {
+    min-height: 100vh; /* Ocupa toda la altura de la pantalla */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.hero-content {
+    /* Animación de entrada */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 1s ease-out 0.5s forwards;
+}
+
+.hero-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 2rem; /* Tamaño para móviles */
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    letter-spacing: 2px;
+}
+
+.hero-tagline {
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--subtle-text-color);
+    max-width: 450px;
+}
+
+/* --- Animaciones --- */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Media Queries para Responsividad (Desktop) --- */
+@media (min-width: 768px) {
+    .main-header {
+        padding: 30px 50px;
+    }
+    
+    .logo {
+        font-size: 2rem;
+    }
+
+    .hero-title {
+        font-size: 4.5rem; /* Título más grande en desktop */
+    }
+
+    .hero-tagline {
+        font-size: 1.5rem; /* Subtítulo más grande en desktop */
+    }
+}
