@@ -1,100 +1,105 @@
 /* --- Reseteo Básico y Variables Globales --- */
 :root {
-    --primary-color: #121212; /* Negro Spotify */
+    --primary-color: #121212;
     --secondary-color: #1E1E1E;
-    --accent-color: #FFC700; /* Un dorado/amarillo vibrante */
+    --accent-color: #FFC700;
     --text-color: #FFFFFF;
     --subtle-text-color: #B3B3B3;
+    --border-radius: 8px;
     --font-main: 'Roboto', sans-serif;
     --font-display: 'Poppins', sans-serif;
+    --swot-strength: #28a745; --swot-weakness: #dc3545;
+    --swot-opportunity: #17a2b8; --swot-threat: #ffc107;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     background-color: var(--primary-color);
     color: var(--text-color);
     font-family: var(--font-main);
+    line-height: 1.6;
 }
 
-/* --- Header y Logo --- */
-.main-header {
-    padding: 20px;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 100;
-}
-
-.logo {
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: 1.5rem;
-    color: var(--accent-color);
-}
+/* --- Componentes Reutilizables --- */
+.main-header { padding: 20px; position: fixed; width: 100%; top: 0; left: 0; z-index: 100; background: linear-gradient(to bottom, rgba(18, 18, 18, 0.8), transparent); }
+.logo { font-family: var(--font-display); font-weight: 900; font-size: 1.5rem; color: var(--accent-color); }
+.content-section { padding: 60px 20px; max-width: 1200px; margin: 0 auto; }
+.section-title { font-family: var(--font-display); font-weight: 700; font-size: 2rem; text-align: center; margin-bottom: 40px; }
+.section-subtitle { font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; color: var(--accent-color); margin-bottom: 20px; margin-top: 40px; text-align: center; }
+.section-description { max-width: 850px; margin: 0 auto 30px auto; text-align: center; color: var(--subtle-text-color); }
 
 /* --- Sección Hero --- */
-.hero-section {
-    min-height: 100vh; /* Ocupa toda la altura de la pantalla */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 0 20px;
-}
+.hero-section { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 20px; }
+.hero-content { opacity: 0; transform: translateY(20px); animation: fadeIn 1s ease-out 0.5s forwards; }
+.hero-title { font-family: var(--font-display); font-weight: 700; font-size: 2rem; margin-bottom: 0.5rem; letter-spacing: 2px; }
+.hero-tagline { font-size: 1.1rem; font-weight: 300; color: var(--subtle-text-color); max-width: 450px; }
 
-.hero-content {
-    /* Animación de entrada */
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeIn 1s ease-out 0.5s forwards;
-}
+/* --- Layout de Tarjetas y FODA --- */
+.card-layout, .derived-strategy-layout { display: flex; flex-direction: column; gap: 20px; }
+.strategy-card { background-color: var(--secondary-color); padding: 25px; border-radius: var(--border-radius); border-left: 4px solid var(--accent-color); display: flex; flex-direction: column; }
+.strategy-card p, .strategy-card ul { color: var(--subtle-text-color); font-weight: 300; }
+.strategy-card ul { list-style-position: inside; padding-left: 10px; margin:0;}
+.strategy-card h4 { color: var(--accent-color); margin-bottom: 10px; font-family: var(--font-display); font-size: 1.1rem;}
+.strategy-card h5 { color: var(--text-color); margin-bottom: 8px; font-family: var(--font-display); }
+.swot-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-bottom: 40px; }
+.swot-item { background-color: var(--secondary-color); padding: 20px; border-radius: var(--border-radius); }
+.swot-item h3 { font-family: var(--font-display); font-weight: 500; margin-bottom: 15px; padding-bottom: 10px; }
+.swot-item ul { list-style: none; padding: 0; }
+.fortalezas h3 { border-bottom: 2px solid var(--swot-strength); color: var(--swot-strength); }
+.debilidades h3 { border-bottom: 2px solid var(--swot-weakness); color: var(--swot-weakness); }
+.oportunidades h3 { border-bottom: 2px solid var(--swot-opportunity); color: var(--swot-opportunity); }
+.amenazas h3 { border-bottom: 2px solid var(--swot-threat); color: var(--swot-threat); }
+.strategy-card.wide .section-subtitle { text-align: left; margin-top:0; }
 
-.hero-title {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 2rem; /* Tamaño para móviles */
-    color: var(--text-color);
-    margin-bottom: 0.5rem;
-    letter-spacing: 2px;
-}
+/* --- Layout de Acordeón --- */
+.accordion-layout { max-width: 900px; margin-left: auto; margin-right: auto; }
+.accordion-item { background-color: var(--secondary-color); margin-bottom: 10px; border-radius: var(--border-radius); overflow: hidden; }
+.accordion-button { background-color: var(--secondary-color); color: var(--text-color); cursor: pointer; padding: 18px 25px; width: 100%; border: none; text-align: left; outline: none; font-size: 1.1rem; font-family: var(--font-display); font-weight: 500; transition: background-color 0.3s ease; display: flex; justify-content: space-between; align-items: center; }
+.accordion-button:hover { background-color: #2a2a2a; }
+.accordion-button::after { content: '+'; font-size: 1.8rem; color: var(--accent-color); font-weight: 300; transition: transform 0.3s ease; }
+.accordion-button.active::after { content: '−'; }
+.accordion-content, .accordion-content-full { max-height: 0; overflow: hidden; transition: max-height 0.5s ease-out; background-color: var(--secondary-color); color: var(--subtle-text-color); }
+.accordion-content { display: flex; flex-wrap: wrap; }
+.accordion-content .content-block { padding: 20px 25px 20px; flex: 1 1 100%; }
+.accordion-content h4, .accordion-content-full h4 { color: var(--text-color); font-family: var(--font-display); margin-bottom: 5px; font-size:1rem; }
+.accordion-content ul, .accordion-content-full ul { list-style-position: inside; }
+.accordion-content strong, .accordion-content-full strong { color: var(--text-color); font-weight: 500; }
+.accordion-content-full .card-layout.nested { padding: 20px; }
+.accordion-content-full .subsection-title { text-align: center; color: var(--accent-color); padding-top: 20px; font-size: 1.2rem; }
 
-.hero-tagline {
-    font-size: 1.1rem;
-    font-weight: 300;
-    color: var(--subtle-text-color);
-    max-width: 450px;
-}
+/* --- Tablas --- */
+.table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid #333; border-radius: var(--border-radius); }
+.calendar-table, .metrics-table { width: 100%; border-collapse: collapse; min-width: 800px; }
+.calendar-table th, .calendar-table td, .metrics-table th, .metrics-table td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #333; font-size: 0.9rem;}
+.calendar-table th, .metrics-table th { background-color: var(--accent-color); color: var(--primary-color); font-family: var(--font-display); font-weight: 700; }
+.calendar-table tr:last-child td, .metrics-table tr:last-child td { border-bottom: none; }
+.calendar-table tbody tr:hover, .metrics-table tbody tr:hover { background-color: #2a2a2a; }
 
-/* --- Animaciones --- */
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+/* --- Growth Backlog --- */
+.backlog-list { list-style-type: none; padding: 0 25px 20px; }
+.backlog-list li { margin-bottom: 15px; line-height: 1.5; }
+.backlog-list li strong { color: var(--accent-color); font-weight: 500; }
+.backlog-list li em { color: var(--subtle-text-color); font-size: 0.9rem; }
 
-/* --- Media Queries para Responsividad (Desktop) --- */
+/* --- Animaciones de Scroll --- */
+.fade-in-section { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+.fade-in-section.is-visible { opacity: 1; transform: translateY(0); }
+@keyframes fadeIn { to { opacity: 1; transform: translateY(0); } }
+
+/* --- Media Queries --- */
 @media (min-width: 768px) {
-    .main-header {
-        padding: 30px 50px;
-    }
-    
-    .logo {
-        font-size: 2rem;
-    }
-
-    .hero-title {
-        font-size: 4.5rem; /* Título más grande en desktop */
-    }
-
-    .hero-tagline {
-        font-size: 1.5rem; /* Subtítulo más grande en desktop */
-    }
+    .main-header { padding: 30px 50px; }
+    .logo { font-size: 2rem; }
+    .hero-title { font-size: 4.5rem; }
+    .card-layout, .derived-strategy-layout { flex-direction: row; gap: 30px; }
+    .swot-grid { grid-template-columns: repeat(2, 1fr); }
+    .accordion-content .content-block { flex-basis: 50%; }
+    .card-layout.nested { display: grid; grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+    .swot-grid { grid-template-columns: repeat(4, 1fr); }
+    #social-media-strategy .card-layout.nested, .card-layout.nested.cta-matrix { grid-template-columns: repeat(3, 1fr); }
+    .card-layout.nested.sem { grid-template-columns: repeat(2, 1fr); }
+    #content-influencers .card-layout.nested { grid-template-columns: repeat(4, 1fr); }
 }
